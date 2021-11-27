@@ -28,10 +28,10 @@ namespace binary_analysis_tool
                     Description = "the candidate bytes")]
             byte[] candidate,
             [Option(LongName = "length", ShortName = "l",
-                    Description = "the length of read block")]
+                    Description = "the length of read block, default is 1024")]
             int length=1024,
             [Option(LongName = "cycle", ShortName = "t",
-                    Description = "the times of reading")]
+                    Description = "the times of reading， 0 for reading all the file")]
             int cycle=0)
         {
             InitLog();

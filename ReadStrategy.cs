@@ -39,6 +39,7 @@ namespace binary_analysis_tool
             {
                 byte[] bytes;
                 int times = 0;
+                // 读文件，每次只读_length字节，只读_cycle次循环
                 while (times < _cycle || _cycle == 0)
                 {
                     bytes = _br.ReadBytes(_length);
