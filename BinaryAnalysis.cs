@@ -57,6 +57,7 @@ namespace binary_analysis_tool
 
             readBlock.Start();
 
+            Log.Information("Finish");
             Console.ReadLine();
         }
         private void InitLog()

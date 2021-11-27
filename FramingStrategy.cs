@@ -41,7 +41,7 @@ namespace binary_analysis_tool
                 for (; i <= _buffer.Length - _length; i++)
                 {
                     // 判断是否匹配head
-                    if (!IsMatch(bytes, i))
+                    if (!IsMatch(_buffer, i))
                     {
                         continue;
                     }
