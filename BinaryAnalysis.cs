@@ -1,12 +1,41 @@
 ﻿using System;
 using System.Threading.Tasks.Dataflow;
+using CommandDotNet;
+using Serilog;
+using Serilog.Events;
 
 namespace binary_analysis_tool
 {
+    [Command(Description = "frame and write binary file")]
     public class BinaryAnalysis
     {
-        public void FramingWriting(string inputFile, string outputFile, byte[] candidate, int frameLength, int length=1024, int cycle=0)
+        [DefaultCommand,
+        Command(Name = "framingwriting",
+        Usage = "framingwriting <string> <string>",
+        Description = "frame and write binary file",
+        ExtendedHelpText = "more details and examples")]
+        public void FramingWriting(
+            [Option(LongName = "inputFile", ShortName = "i",
+                    Description = "the path of input file")]
+            string inputFile,
+            [Option(LongName = "outputFile", ShortName = "o",
+                    Description = "the path of output file")]
+            string outputFile,
+            [Option(LongName = "frameLength", ShortName = "L",
+                    Description = "the length of frame")]
+            int frameLength,
+            [Option(LongName = "candidate", ShortName = "c",
+                    Description = "the candidate bytes")]
+            byte[] candidate,
+            [Option(LongName = "length", ShortName = "l",
+                    Description = "the length of read block")]
+            int length=1024,
+            [Option(LongName = "cycle", ShortName = "t",
+                    Description = "the times of reading")]
+            int cycle=0)
         {
+            InitLog();
+
             IReadStrategy readStrategy = new FileReadStrategy(inputFile, length, cycle);
             ReadBlock readBlock = new ReadBlock(readStrategy);
 
@@ -29,6 +58,14 @@ namespace binary_analysis_tool
             readBlock.Start();
 
             Console.ReadLine();
+        }
+        private void InitLog()
+        {
+            Log.Logger = new LoggerConfiguration()
+                .MinimumLevel.Verbose()
+                .WriteTo.File("log/log.txt", rollingInterval: RollingInterval.Day)
+                .WriteTo.Console(restrictedToMinimumLevel: LogEventLevel.Information)
+                .CreateLogger();
         }
     }
 }

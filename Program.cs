@@ -1,14 +1,13 @@
-﻿using System;
+﻿using CommandDotNet;
+using System;
 
 namespace binary_analysis_tool
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main(string[] args) // -i demo1.bin -o output.bin -L 100 -c 0 -c 1 -c 2 -c 3 -c 4 -c 5 -c 6 -c 7 -c 8 -c 9
         {
-            BinaryAnalysis ba = new BinaryAnalysis();
-            byte[] head = new byte[] { 0, 1, 2, 3, 4, 5, 6, 7, 8};
-            ba.FramingWriting("demo1.bin", "output.bin", head, 100);
+            new AppRunner<BinaryAnalysis>().Run(args);
         }
     }
 }

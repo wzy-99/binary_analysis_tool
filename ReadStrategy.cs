@@ -44,7 +44,7 @@ namespace binary_analysis_tool
                     bytes = _br.ReadBytes(_length);
                     if (bytes.Length != 0)
                     {
-                        Log.Verbose("Read {length} bytes", bytes.Length);
+                        Log.Verbose("Success read {length} bytes", bytes.Length);
                         times += 1;
                         dataArrived?.Invoke(bytes);
                     }

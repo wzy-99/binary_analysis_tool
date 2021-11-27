@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Serilog;
+using System;
 using System.Linq;
 
 namespace binary_analysis_tool
@@ -45,6 +46,7 @@ namespace binary_analysis_tool
                     {
                         byte[] ret = new byte[_length];
                         Array.Copy(_buffer, i, ret, 0, _length);
+                        Log.Verbose("Success frame {Bytes}", ret);
                         dataArrived?.Invoke(ret);
                     }
                 }

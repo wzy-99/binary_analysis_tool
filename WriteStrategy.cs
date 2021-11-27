@@ -30,6 +30,7 @@ namespace binary_analysis_tool
             try
             {
                 _bw.Write(bytes);
+                Log.Verbose("Success write {length} bytes.", bytes.Length);
             }
             catch (IOException e)
             {
