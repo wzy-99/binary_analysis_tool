@@ -7,7 +7,7 @@ namespace binary_analysis_tool
 {
     public interface IWriteStrategy
     {
-        public void Write(byte[] bytes);
+        public void Write(byte[] bytes, bool complete);
     }
     public class FileWriteStrategy : IWriteStrategy
     {
@@ -17,7 +17,7 @@ namespace binary_analysis_tool
         {
             _path = path;
         }
-        public void Write(byte[] bytes)
+        public void Write(byte[] bytes, bool complete)
         {
             try
             {

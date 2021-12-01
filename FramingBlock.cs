@@ -16,7 +16,7 @@ namespace binary_analysis_tool
         {
             framingStrategy.Framing(input);
         }
-        public void SetAction(Action<Byte[]> action)
+        public void SetAction(Action<Tuple<byte[], bool>> action)
         {
             framingStrategy.SetAction(action);
         }
